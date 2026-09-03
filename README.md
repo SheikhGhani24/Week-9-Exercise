@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Week 9 Exercise — Next.js Task Management App
 
-## Getting Started
+A Next.js frontend for the Week 8 authenticated Task Management API.
 
-First, run the development server:
+Tech Stack
+Next.js (App Router)
+TypeScript
+Tailwind CSS
+Jest + React Testing Library
+JWT Authentication
+Features
+Login with JWT authentication
+Protected Tasks page
+View and filter tasks
+Create tasks
+Delete tasks
+API validation/error handling
+Sign out
+Automated tests
+GitHub Actions CI
+Environment Variables
 
-```bash
+Create .env.local:
+
+NEXT_PUBLIC_API_URL=http://localhost:3001
+
+.env.local is not committed. Use .env.example as a template.
+
+Installation
+npm ci
+Running the Application
+1. Start the Week 8 API
+
+In the Week 8 project:
+
+npm run start:dev
+
+The API runs on:
+
+http://localhost:3001
+2. Start the Week 9 Frontend
+
+In this project:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The frontend runs on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open:
 
-## Learn More
+http://localhost:3000/login
 
-To learn more about Next.js, take a look at the following resources:
+Sign in using an existing account from the Week 8 API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Registration is not part of this Week 9 frontend.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+After login, you are redirected to /tasks.
 
-## Deploy on Vercel
+Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The JWT session is stored in browser localStorage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Authenticated API requests automatically include:
+
+Authorization: Bearer <token>
+
+Signing out clears the stored session and redirects to /login.
+
+Testing
+
+Run:
+
+npm test
+
+Tests cover:
+
+Authorization header handling
+Task rendering and empty state
+Task creation
+API validation errors
+Production Build
+npm run build
+
+The build does not require the API or database to be running.
+
+CI
+
+GitHub Actions runs on push and pull requests and performs:
+
+npm ci
+npm run build
+npm test
+
+using Node.js 20.
